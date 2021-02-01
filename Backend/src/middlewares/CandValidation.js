@@ -12,7 +12,13 @@ const CandValidation = async(req, res, next) => {
         return res.status(400).json({error: 'Idade é obrigatório'});
     else if(!tecnologias)
         return res.status(400).json({error: 'O campo tecnologias é obrigatório'});
-    else
+    else{
+        let exists;
+        exists = await Candidate.findOne({ 'nome': {'$eq': nome}, 'email': {'$eq': email}});
+
+        if(exists)
+            return res.status(400).json({error: 'Esse usuário já existe'});
         next();
+    }
 }
 module.exports = CandValidation;
