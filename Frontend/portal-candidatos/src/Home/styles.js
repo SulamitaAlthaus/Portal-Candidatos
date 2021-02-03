@@ -4,6 +4,8 @@ export const Container = styled.div`
     display: grid;
 `;
 
+
+
 export const Title = styled.div`
     position: absolute;
     margin-top: 50px;
