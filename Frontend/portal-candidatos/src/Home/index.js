@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as S from "./styles";
-
 import api from '../services/api';
 import ListCandidate from '../../src/components/ListCandidate';
+import NewCandidate from '../../src/components/NewCandidate';
 
 
 function Home() {
     const [candidate, setCandidate] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false)
 
     async function loadCandidates() {
         await api.get(`/new/filter/all`)
@@ -14,7 +15,6 @@ function Home() {
                 setCandidate(response.data)
             })
     }
-    
 
     useEffect(() => {
         loadCandidates()
@@ -29,7 +29,8 @@ function Home() {
                 <S.Logout>Sair</S.Logout>
             </S.BoxUser>
             <S.ListCandidates placeholder="Filtrar candidatos por tecnologias" />
-            <S.NewCandidate>+ Adicionar Candidato</S.NewCandidate>
+            <S.NewCandidate onClick={() => setIsModalVisible(true)}>+ Adicionar Candidato</S.NewCandidate>
+            {isModalVisible ? <NewCandidate onClose={() => setIsModalVisible(false)}/>: null}
             <table>
                 <thead>
                     <tr>
@@ -42,8 +43,7 @@ function Home() {
                 </thead>
                 <tbody>
                     {candidate.map(c => (
-                        <ListCandidate key={c._id} id={c._id} nome={c.nome} email={c.email} idade={c.idade} url={c.urlLinkedin} tecnologias={c.tecnologias} />
-                        
+                        <ListCandidate key={c._id} id={c._id} nome={c.nome} email={c.email} idade={c.idade} url={c.urlLinkedin} tecnologias={c.tecnologias} />    
                     ))}
                 </tbody>
             </table>
