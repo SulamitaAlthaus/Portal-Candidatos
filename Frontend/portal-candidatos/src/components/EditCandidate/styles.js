@@ -22,6 +22,8 @@ export const Container = styled.div`
     height: 60%;
     border-radius: 20px;
 `;
+export const Input = styled.input`
+`;
 
 export const Button = styled.button`
     background-color: transparent;
@@ -63,7 +65,7 @@ export const Title = styled.div`
 `;
 
 export const Text = styled.div`
-    width: 100px;
+    width: 80px;
     font-size: 18px;
     margin-left: 10px;
     font-family: Arial, sans-serif;
