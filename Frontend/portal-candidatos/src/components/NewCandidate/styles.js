@@ -15,7 +15,7 @@ export const Modal = styled.div`
 `;
 
 export const Container = styled.div`
-    display: block;
+    display: inline-block;
     background-color:#fff;
     color: #000;
     width: 60%;
@@ -60,13 +60,28 @@ export const Title = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    font-family: Arial, sans-serif;
 `;
 
 export const Text = styled.div`
-    width: 100px;
     font-size: 18px;
     margin-left: 10px;
     font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+
+
+`;
+export const Input = styled.input`
+    padding-left: 10px;
+    width: 300px;
+    font-size: 15px;
+    margin-left: 10px;
+    font-family: Arial, sans-serif;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #D3D3D3;
+    cursor: pointer;
+    
 `;
 export const Checkbox = styled.div`
     display: grid;
@@ -75,25 +90,24 @@ export const Checkbox = styled.div`
     font-family: Arial, sans-serif;
     justify-content: left;
     align-items: left;
+    cursor: pointer;
 `;
 export const Save = styled.button`
     display: flex;
     position: relative;
     float: right;
-    bottom: -40px;
+    bottom: -20px;
     border-radius: 20px;
     margin-right: 10px;
     cursor: pointer;
     font-family: Arial, sans-serif;
-
-
 `;
 
 export const Cancel = styled.button`
     display: flex;
     position: relative;
     float: right;
-    bottom: -40px;
+    bottom: -20px;
     border-radius: 20px;
     margin-right: 10px;
     cursor: pointer;

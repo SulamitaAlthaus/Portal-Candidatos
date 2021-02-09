@@ -10,4 +10,6 @@ router.get('/filter/all', CandidateController.all);
 router.delete('/:id', CandidateController.delete);
 
 
+
+
 module.exports = router;

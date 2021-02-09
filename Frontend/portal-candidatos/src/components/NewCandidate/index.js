@@ -44,10 +44,10 @@ const NewCandidate = ({ onClose= () => {}}) => {
         <S.Container>
             <S.Button onClick={onClose}/>
             <S.Title>Novo Candidato</S.Title>
-            <S.Text>Nome: <input type="text" onChange={e => setNome(e.target.value)} value={nome} /></S.Text>
-            <S.Text>Email: <input type="email" onChange={e => setEmail(e.target.value)} value={email} /></S.Text>
-            <S.Text>Idade: <input type="number" onChange={e => setIdade(e.target.value)} value={idade} /></S.Text>
-            <S.Text>Linkedin: <input type="url" onChange={e => setUrlLinkedin(e.target.value)} value={urlLinkedin} /></S.Text>
+            <S.Text>Nome: <S.Input type="text" onChange={e => setNome(e.target.value)} value={nome} /></S.Text>
+            <S.Text>Email: <S.Input type="email" onChange={e => setEmail(e.target.value)} value={email} /></S.Text>
+            <S.Text>Idade: <S.Input type="number" onChange={e => setIdade(e.target.value)} value={idade} /></S.Text>
+            <S.Text>Linkedin: <S.Input type="url" onChange={e => setUrlLinkedin(e.target.value)} value={urlLinkedin} /></S.Text>
             <S.Text>Tecnologias: </S.Text>
             <S.Checkbox>
                 <input id="C#" type="checkbox" onChange={addTecnologias} value="C#"/>

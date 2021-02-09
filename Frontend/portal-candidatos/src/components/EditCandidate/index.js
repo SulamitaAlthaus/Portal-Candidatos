@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import * as S from './styles';
+import React from 'react';
+import * as S from '../NewCandidate/styles';
 import api from '../../services/api';
 
 function EditCandidate({ onClose = () => { }, id, nome, email, idade, url, tecnologias }) {
@@ -34,10 +34,10 @@ function EditCandidate({ onClose = () => { }, id, nome, email, idade, url, tecno
         <S.Container>
             <S.Button onClick={onClose} />
             <S.Title>Novo Candidato</S.Title>
-            <S.Text>Nome: <input type="text" onChange={e => nome = (e.target.value)} defaultValue={nome} /></S.Text>
-            <S.Text>Email: <input type="email" onChange={e => email = (e.target.value)} defaultValue={email} /></S.Text>
-            <S.Text>Idade: <input type="number" onChange={e => idade = (e.target.value)} defaultValue={idade} /></S.Text>
-            <S.Text>Linkedin: <input type="text" onChange={e => url = (e.target.value)} defaultValue={url} /></S.Text>
+            <S.Text>Nome: <S.Input type="text" onChange={e => nome = (e.target.value)} defaultValue={nome} /></S.Text>
+            <S.Text>Email: <S.Input type="email" onChange={e => email = (e.target.value)} defaultValue={email} /></S.Text>
+            <S.Text>Idade: <S.Input type="number" onChange={e => idade = (e.target.value)} defaultValue={idade} /></S.Text>
+            <S.Text>Linkedin: <S.Input type="text" onChange={e => url = (e.target.value)} defaultValue={url} /></S.Text>
             <S.Text>Tecnologias: </S.Text>
             <S.Checkbox>
                 <input id="C#" type="checkbox" name="teste" defaultChecked={tecnologias.includes("C#") ? true : false} 

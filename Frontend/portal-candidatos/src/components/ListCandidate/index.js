@@ -24,8 +24,8 @@ function ListCandidate({ id, nome, email, idade, url, tecnologias }) {
             <td><S.Row>{idade}</S.Row></td>
             <td><S.Row><a href={("https://www.linkedin.com/in/"+{url}+"/")}>{url}</a></S.Row></td>
             <td><S.Row>{tecnologias.join(', ')}</S.Row></td>
-            <td><S.Row><S.Button onClick={deleteCandidate}>Delete</S.Button></S.Row></td>
-            <button onClick={() => setIsModalVisible(true)}>Editar</button>
+            <td><S.Row><S.Button onClick={deleteCandidate}>Delete</S.Button>
+            <S.Button onClick={() => setIsModalVisible(true)}>Editar</S.Button></S.Row></td>
             {isModalVisible ? <EditCandidate id={id} nome={nome} email={email} idade={idade} url={url} tecnologias={tecnologias}
             onClose={() => setIsModalVisible(false)} /> : null}
         </tr>

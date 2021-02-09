@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as S from "./styles";
-import api from '../services/api';
-import ListCandidate from '../../src/components/ListCandidate';
-import NewCandidate from '../../src/components/NewCandidate';
+import api from '../../services/api';
+import ListCandidate from '../../components/ListCandidate';
+import NewCandidate from '../../components/NewCandidate';
 
 function Home() {
     const [candidate, setCandidate] = useState([])
@@ -23,16 +23,17 @@ function Home() {
     }
 
     const findCandidate = (e) => {
-        for (let i = 0; i < candidate.length; i++) {
-            if (candidate[i].tecnologias.includes(e.target.value)) {
-                setFilteredCandidates(true);
-                setFId(candidate[i].id);
-                setFNome(candidate[i].nome);
-                setFEmail(candidate[i].email);
-                setFIdade(candidate[i].idade);
-                setFUrl(candidate[i].urlLinkedin);
-                setFTec(candidate[i].tecnologias);
-
+        for (let j = 0; j < candidate.length; j++) {
+            if (candidate[j].tecnologias.includes(e.target.value)) {
+                for (let i = 0; i < candidate.length; i++) {
+                    setFilteredCandidates(true);
+                    setFId(candidate[i]._id)
+                    setFNome(candidate[i].nome)
+                    setFEmail(candidate[i].email)
+                    setFIdade(candidate[i].idade)
+                    setFUrl(candidate[i].urlLinkedin)
+                    setFTec(candidate[i].tecnologias)
+                }
             } else {
                 setFilteredCandidates(false)
             }
@@ -67,13 +68,17 @@ function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredCandidates ? <ListCandidate key={fId} id={fId} nome={fNome}
-                        email={fEmail} idade={fIdade} url={fUrl} tecnologias={fTec} /> :
-                        candidate.map(c => (
-                                <ListCandidate
-                                    key={c._id} id={c._id} nome={c.nome} email={c.email} idade={c.idade} url={c.urlLinkedin} tecnologias={c.tecnologias} />
-                            ))
-                        }
+                    {candidate.map(c => (
+                        <ListCandidate
+                            key={filteredCandidates ? fId : c.id}
+                            id={filteredCandidates ? fId : c.id}
+                            nome={filteredCandidates ? fNome : c.nome}
+                            email={filteredCandidates ? fEmail : c.email}
+                            idade={filteredCandidates ? fIdade : c.idade}
+                            url={filteredCandidates ? fUrl : c.urlLinkedin}
+                            tecnologias={filteredCandidates ? fTec : c.tecnologias} />))}
+
+
                 </tbody>
             </table>
         </S.Container>
