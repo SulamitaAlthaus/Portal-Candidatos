@@ -3,23 +3,15 @@ import styled from 'styled-components';
 export const Container = styled.div`
     display: grid;
 `;
-
-
-
 export const Title = styled.div`
     position: absolute;
     margin-top: 50px;
-    margin-left: 280px;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 800;
     font-family: Helvetica, sans-serif;
 `;
-export const BoxUser = styled.div`
-    width: 150px;  
-    height: 150px;
-    display: grid;
+export const Search = styled.div`
     margin-top: 100px;
-    margin-left: 80px;
     justify-items: center;
     align-items: center;
 `;

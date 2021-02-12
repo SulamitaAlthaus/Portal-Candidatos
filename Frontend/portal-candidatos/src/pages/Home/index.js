@@ -3,44 +3,56 @@ import * as S from "./styles";
 import api from '../../services/api';
 import ListCandidate from '../../components/ListCandidate';
 import NewCandidate from '../../components/NewCandidate';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 function Home() {
     const [candidate, setCandidate] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false)
-    const [filteredCandidates, setFilteredCandidates] = useState(false)
-    const [fId, setFId] = useState()
-    const [fNome, setFNome] = useState()
-    const [fEmail, setFEmail] = useState()
-    const [fIdade, setFIdade] = useState()
-    const [fUrl, setFUrl] = useState()
-    const [fTec, setFTec] = useState([])
+    var vet=[]
+    const items = [{id: 0,name: 'C#'},
+          {id: 1,name: 'Angular'},
+          { id: 2,name: 'Mensageria'},
+          {id: 3,name: 'Javascript'},
+          {id: 4,name: 'React'},
+          {id: 5,name: 'PHP'},
+          {id: 6,name: 'NodeJS'},
+          {id: 7,name: 'Ionic'},
+          {id: 8,name: 'Laravel'}]
+
+    
+
+  const handleOnSearch = (item) => {
+  for (let i = 0; i < candidate.length; i++) {
+      if (candidate[i].tecnologias.includes(item.name)) {
+          var id = candidate[i]._id;
+          var nome = candidate[i].nome;
+          var email = candidate[i].email;
+          var idade = candidate[i].idade;
+          var urlLinkedin = candidate[i].urlLinkedin;
+          var tecnologias = candidate[i].tecnologias;
+          vet.push({id,nome,email,idade,urlLinkedin,tecnologias})
+          console.log(candidate[i]._id)
+      }
+  }
+  setCandidate(vet)
+}
+
+  const handleOnSelect = (items) => {
+            console.log("chegou as")
+        
+  }
+
+  const handleOnFocus = () => {
+    console.log(items)
+  }
 
     async function loadCandidates() {
         await api.get(`/new/filter/all`)
             .then(response => {
-                setCandidate(response.data)
+                setCandidate(response.data) 
+                console.log(response.data)
             })
     }
-
-    const findCandidate = (e) => {
-        for (let j = 0; j < candidate.length; j++) {
-            if (candidate[j].tecnologias.includes(e.target.value)) {
-                for (let i = 0; i < candidate.length; i++) {
-                    setFilteredCandidates(true);
-                    setFId(candidate[i]._id)
-                    setFNome(candidate[i].nome)
-                    setFEmail(candidate[i].email)
-                    setFIdade(candidate[i].idade)
-                    setFUrl(candidate[i].urlLinkedin)
-                    setFTec(candidate[i].tecnologias)
-                }
-            } else {
-                setFilteredCandidates(false)
-            }
-        }
-    }
-
-
 
     useEffect(() => {
         loadCandidates()
@@ -49,12 +61,16 @@ function Home() {
     return (
         <S.Container>
             <S.Title>Candidatos</S.Title>
-            <S.BoxUser>
-                <S.Avatar />
-                <S.User>Fulano</S.User>
-                <S.Logout>Sair</S.Logout>
-            </S.BoxUser>
-            <S.ListCandidates placeholder="Buscar" id="input" className="input" onChange={findCandidate} />
+            <S.Search>
+                <ReactSearchAutocomplete
+            items={items}
+            onSearch={handleOnSelect}
+            onSelect={handleOnSearch}
+            onFocus={handleOnFocus}
+            autoFocus
+          />
+            </S.Search>
+            
             <S.NewCandidate onClick={() => setIsModalVisible(true)}>+ Adicionar Candidato</S.NewCandidate>
             {isModalVisible ? <NewCandidate onClose={() => setIsModalVisible(false)} /> : null}
             <table>
@@ -68,15 +84,16 @@ function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {candidate.map(c => (
+                    {
+                    candidate.map(c => (
                         <ListCandidate
-                            key={filteredCandidates ? fId : c.id}
-                            id={filteredCandidates ? fId : c.id}
-                            nome={filteredCandidates ? fNome : c.nome}
-                            email={filteredCandidates ? fEmail : c.email}
-                            idade={filteredCandidates ? fIdade : c.idade}
-                            url={filteredCandidates ? fUrl : c.urlLinkedin}
-                            tecnologias={filteredCandidates ? fTec : c.tecnologias} />))}
+                            key={c.id}
+                            id={c.id}
+                            nome={c.nome}
+                            email={c.email}
+                            idade={c.idade}
+                            url={c.urlLinkedin}
+                            tecnologias={c.tecnologias} />))}
 
 
                 </tbody>
