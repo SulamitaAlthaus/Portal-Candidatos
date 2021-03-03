@@ -37,14 +37,6 @@ function Home() {
   setCandidate(vet)
 }
 
-  const handleOnSelect = (items) => {
-            console.log("chegou as")
-        
-  }
-
-  const handleOnFocus = () => {
-    console.log(items)
-  }
 
     async function loadCandidates() {
         await api.get(`/new/filter/all`)
@@ -64,10 +56,8 @@ function Home() {
             <S.Search>
                 <ReactSearchAutocomplete
             items={items}
-            onSearch={handleOnSelect}
             onSelect={handleOnSearch}
-            onFocus={handleOnFocus}
-            autoFocus
+            placeholder="Pesquisar candidato por tecnologia..."
           />
             </S.Search>
             
@@ -87,8 +77,8 @@ function Home() {
                     {
                     candidate.map(c => (
                         <ListCandidate
-                            key={c.id}
-                            id={c.id}
+                            key={c._id}
+                            id={c._id}
                             nome={c.nome}
                             email={c.email}
                             idade={c.idade}

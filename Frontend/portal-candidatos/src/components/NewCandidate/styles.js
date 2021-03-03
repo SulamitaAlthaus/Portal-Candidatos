@@ -18,8 +18,8 @@ export const Container = styled.div`
     display: inline-block;
     background-color:#fff;
     color: #000;
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height: 50%;
     border-radius: 20px;
 `;
 
@@ -65,15 +65,13 @@ export const Title = styled.div`
 
 export const Text = styled.div`
     font-size: 18px;
-    margin-left: 10px;
+    padding-left: 40px;
     font-family: Arial, sans-serif;
     margin-bottom: 10px;
-
-
 `;
 export const Input = styled.input`
     padding-left: 10px;
-    width: 300px;
+    width: 500px;
     font-size: 15px;
     margin-left: 10px;
     font-family: Arial, sans-serif;
@@ -85,12 +83,15 @@ export const Input = styled.input`
 `;
 export const Checkbox = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));    
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));   
+    padding: 0 50px;
+    cursor: pointer;
+
+    label{
     font-size: 15px;
     font-family: Arial, sans-serif;
-    justify-content: left;
-    align-items: left;
-    cursor: pointer;
+    margin-left: -20px;
+    }
 `;
 export const Save = styled.button`
     display: flex;

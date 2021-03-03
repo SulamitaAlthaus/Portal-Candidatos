@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from '../NewCandidate/styles';
 import api from '../../services/api';
 
-function EditCandidate({ onClose = () => { }, id, nome, email, idade, url, tecnologias }) {
+function EditCandidate({ onClose = () => {}, id, nome, email, idade, url, tecnologias }) {
 
 
     const handleOutsideClick = (e) => {
@@ -26,14 +26,17 @@ function EditCandidate({ onClose = () => { }, id, nome, email, idade, url, tecno
     async function edit() {
         await api.put(`/new/${id}`, {
             nome, email, idade, url, tecnologias
+        }).then(() => {
+            window.location.reload()
+            alert("Usuário atualizado")
+
         })
-        window.location.reload()
     }
 
     return <S.Modal id="modal" onClick={handleOutsideClick}>
         <S.Container>
             <S.Button onClick={onClose} />
-            <S.Title>Novo Candidato</S.Title>
+            <S.Title>Editar Candidato</S.Title>
             <S.Text>Nome: <S.Input type="text" onChange={e => nome = (e.target.value)} defaultValue={nome} /></S.Text>
             <S.Text>Email: <S.Input type="email" onChange={e => email = (e.target.value)} defaultValue={email} /></S.Text>
             <S.Text>Idade: <S.Input type="number" onChange={e => idade = (e.target.value)} defaultValue={idade} /></S.Text>
